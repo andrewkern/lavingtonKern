@@ -1,0 +1,44 @@
+File Description for file in folder: ~./AnalysisFiles
+
+All.txt--			Distance between nearest-neighbor gene regions as annotated in Dmel r5.49
+				Any overlapping gene regions were define as distance = 0
+
+chr2L_63sample_bootstrap.r--Permutation generation of genes for physical distance clustering measures
+					'bootstrap' is a misnomer-- samples are drawn WITHOUT REPLACEMNT
+				rational for w\o replacement-> cannot draw any gene more than once; 
+				gene regions are considered as units, not splice forms. 
+				This file is one iteration of a set. Counts of  sampled gene regions and 
+				chromosome are were input to reflect the count of IAL for each Inversion 
+				on each chromosome arm.
+							
+pairwiseSnpLd.sh--		Calculates the pairwise LD for all SNPs as r^2.
+				Chi^2 is also calculated from r^2 and sample size
+							
+SimpleModel.r--		ANOVA of Ayroles expression data in R using a simple model:
+						Expression ~ Sex + In2Lt + In3RMo + Line%in%In2Lt
+				for each probeset. 
+							
+SimpleModelPermute.r--	Permutation generation for expression ANOVA analysis.
+				Inversion state is permuted across individuals.
+
+SimpleModelPercs.r--		Calculates the percentile of modle effect for each probe
+				from the F-value of the observed data and the F-distribution
+				of the permutation data.
+							
+SNPandINVcorr.sh--		Calculates LD between each SNP and Inversion State as r^2.
+				Chi^2 is also calculated from r^2 and sample size.
+							
+(expression correlation)--	Expression correlation was calculated for each pair of probesets
+				locally in R. The script is simple: lopping lm([Probe_i]~[Probe_j]) 
+				for the ith and jth probesets. Adjusted r^2 was saved for the
+				lower half of the matrix.
+							
+AyrolesAllExpCorr--		Shortcut to file of pairwise probeset correlations.		
+
+getMatrixData.sh--		Retrieves cell contents from 'AyrolesExpRsq' (here referred to as 'AyrolesAllExpCorr')
+				by probeset name along row and column. Files with IAL probeset names are
+				in the folder with 'AyrolesExpRsq'	: /san/personal/lavington/ExpressionData/ExpressionCorrelation/
+
+snpReportInvState.##--	Data files with Inversion states and SNP calls for each of the DGRP lines. The suffix
+				of each file represents the chromosome are data in that file (i.e. 33 = chr2L, chr2R, chr3L, chr3R, or chrX).
+				These files are located in /san/data/melanogaster/drosophilaNexus/dgrp/snpReports/
